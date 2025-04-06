@@ -1,6 +1,8 @@
 import { StylerIcon } from "@/assets/icons";
 import { Dot, Github } from "lucide-react";
 import React from "react";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 
 export default function Introduction() {
   return (
@@ -45,9 +47,9 @@ export default function Introduction() {
             aria-label="Styler Icon"
           />
 
-          <h1 className="text-3xl font-bold leading-tight hover:text-yellow-400 cursor-pointer">
+          <h2 className="text-3xl font-bold leading-tight hover:text-yellow-400 cursor-pointer">
             Backstage & full show
-          </h1>
+          </h2>
         </div>
 
         <div className="text-base leading-relaxed text-white max-w-3xl">
@@ -59,22 +61,14 @@ export default function Introduction() {
         </div>
       </div>
 
-      <div className="bg-pink-500 text-white px-6 md:px-12 py-8">
-        <div className="max-w-screen-lg mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex">
-            <input
-              type="text"
-              placeholder="Search in the list..."
-              className="px-4 py-2 text-black rounded-l"
-            />
-            <button className="bg-yellow-400 px-4 py-2 rounded-r text-black font-bold">
-              Search
-            </button>
-          </div>
-
-          <button className="font-bold text-center">
-            I want to know a random runway
-          </button>
+      <div className="bg-pink-500 text-white py-8">
+        <div className="flex w-full items-center space-x-1 max-w-screen-lg mx-auto">
+          <Input
+            placeholder="Search a designer or runway..."
+            type="text"
+            className="placeholder:text-white"
+          ></Input>
+          <Button className="cursor-pointer">Search</Button>
         </div>
       </div>
     </section>
