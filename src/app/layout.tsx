@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Outfit, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/footer";
+import { Toaster } from "@/components/ui/sonner";
 
 const outfitSans = Outfit({
   variable: "--font-outfit-sans",
@@ -64,6 +65,7 @@ export default function RootLayout({
       >
         {children}
         <Footer />
+        <Toaster />
       </body>
     </html>
   );

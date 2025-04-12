@@ -20,7 +20,7 @@ function DesignerCard() {
       </div>
 
       <p className="mt-3 font-semibold text-white">Kiko Kostadinov</p>
-      <p className="text-sm text-gray-400 flex gap-1">
+      <p className="text-sm text-gray-400 flex items-center">
         Asics <Dot className="w-4 h-4" /> Novalis
       </p>
     </Link>
