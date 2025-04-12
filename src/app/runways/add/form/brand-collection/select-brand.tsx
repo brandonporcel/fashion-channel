@@ -23,7 +23,7 @@ function SelectBrandCollection() {
 
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
         <div>
           <Label htmlFor="brand">Brand</Label>
           <Controller
@@ -61,8 +61,8 @@ function SelectBrandCollection() {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row justify-between gap-1 sm:gap-4">
-          <div className="w-full sm:w-1/2">
+        <div className="flex flex-col sm:flex-row justify-between gap-1">
+          <div className="w-full sm:w-6/12 md:w-full">
             <Label htmlFor="collection">Collection</Label>
             <Controller
               control={control}
