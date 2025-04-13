@@ -1,36 +1,42 @@
-import React from "react";
+"use client";
 import Link from "next/link";
 import RunwayCard from "../runway-card";
-
-const runways = [
-  {
-    id: 1,
-    image:
-      "https://assets.vogue.com/photos/66f84ce3b7a248afbd81786b/master/w_1280,c_limit/_OBY0008.jpg",
-  },
-  {
-    id: 2,
-    image:
-      "https://assets.vogue.com/photos/66f84ce3b7a248afbd81786b/master/w_1280,c_limit/_OBY0008.jpg",
-  },
-  {
-    id: 3,
-    image:
-      "https://assets.vogue.com/photos/66f84ce3b7a248afbd81786b/master/w_1280,c_limit/_OBY0008.jpg",
-  },
-  {
-    id: 4,
-    image:
-      "https://assets.vogue.com/photos/66f84ce3b7a248afbd81786b/master/w_1280,c_limit/_OBY0008.jpg",
-  },
-  {
-    id: 5,
-    image:
-      "https://assets.vogue.com/photos/66f84ce3b7a248afbd81786b/master/w_1280,c_limit/_OBY0008.jpg",
-  },
-];
+import { fetchTopRunways } from "@/services/runway.service";
+import { Runway } from "@/types/runway";
+import { useEffect, useState } from "react";
 
 function TopRunways() {
+  const [runways, setRunways] = useState<Runway[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const getRunways = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const data = await fetchTopRunways();
+        setRunways(data);
+      } catch (err: any) {
+        setError("Hubo un error al obtener los desfiles de moda");
+        console.error("Error fetching runways:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getRunways();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>hubo un error</div>;
+  }
+
   return (
     <section>
       <div className="flex justify-between items-center">
@@ -41,8 +47,17 @@ function TopRunways() {
       </div>
       <div className="flex overflow-x-auto space-x-4 pb-2 scrollbar-hide">
         {runways.map((runway) => (
-          <RunwayCard key={runway.id} id={runway.id} image={runway.image} />
+          <RunwayCard
+            key={runway.id}
+            id={runway.id}
+            image={
+              "https://assets.vogue.com/photos/67ccafcab701e1e3822f577b/master/w_1920,c_limit/00002-alexander-mcqueen-fall-2025-ready-to-wear-credit-gorunway.jpg"
+            }
+          />
         ))}
+        {runways.length === 0 && (
+          <p className="text-gray-500">No runways found</p>
+        )}
       </div>
     </section>
   );

@@ -4,7 +4,7 @@ export const runwaySchema = z.object({
   brandId: z.string({
     required_error: "Brand is required",
   }),
-  collectionId: z.string({
+  collectionType: z.string({
     required_error: "Collection is required",
   }),
   year: z.number({
@@ -21,4 +21,4 @@ export const runwaySchema = z.object({
     .min(1, "Please upload at least one image"),
 });
 
-export type FormData = z.infer<typeof runwaySchema>;
+export type RunwayFormData = z.infer<typeof runwaySchema>;

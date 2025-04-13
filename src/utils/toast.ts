@@ -24,3 +24,16 @@ export const showSuccessToast = (message: string, description?: string) => {
     icon: "✅",
   });
 };
+
+export const showInfoToast = (message: string, description?: string) => {
+  toast.info(message, {
+    description,
+    duration: 4000,
+    style: {
+      backgroundColor: "#e5f3ff",
+      color: "#2563eb",
+      border: "1px solid #a7f3d0",
+    },
+    icon: "ℹ️",
+  });
+};

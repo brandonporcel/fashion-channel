@@ -8,12 +8,33 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useEffect, useState } from "react";
+import { Designer } from "@/types/designer.types";
+import { getDesigners } from "@/actions/designer.action";
 
-function DesignerSection() {
+function SelectDesigner() {
   const {
     control,
     formState: { errors },
   } = useFormContext();
+  const [designers, setDesigners] = useState<Designer[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadDesigners() {
+      try {
+        setIsLoading(true);
+        const data = await getDesigners();
+        setDesigners(data);
+      } catch (error) {
+        console.error("Failed to load designers:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    loadDesigners();
+  }, []);
 
   return (
     <>
@@ -24,12 +45,24 @@ function DesignerSection() {
           control={control}
           render={({ field }) => {
             return (
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <Select
+                onValueChange={field.onChange}
+                defaultValue={field.value}
+                disabled={isLoading}
+              >
                 <SelectTrigger id="designer" className="w-full">
-                  <SelectValue placeholder="Select designer" />
+                  <SelectValue
+                    placeholder={
+                      isLoading ? "Loading designers..." : "Select designer"
+                    }
+                  />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="john-galliano">John Galliano</SelectItem>
+                  {designers.map((designer) => (
+                    <SelectItem key={designer.id} value={designer.id}>
+                      {designer.name} {designer.lastName}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             );
@@ -56,4 +89,4 @@ function DesignerSection() {
   );
 }
 
-export default DesignerSection;
+export default SelectDesigner;

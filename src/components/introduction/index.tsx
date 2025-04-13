@@ -1,8 +1,5 @@
-import { StylerIcon } from "@/assets/icons";
 import { Dot, Github } from "lucide-react";
-import React from "react";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import { StylerIcon } from "@/assets/icons";
 
 export default function Introduction() {
   return (
@@ -10,12 +7,12 @@ export default function Introduction() {
       <div className="border-b border-white/30">
         <div className="max-w-screen-lg mx-auto flex items-center justify-between px-6 md:px-12 py-4">
           <nav className="flex gap-4 text-sm font-semibold">
-            <a href="#" className="hover:text-yellow-400">
-              Designers
+            <a href="#runways" className="hover:text-yellow-400">
+              Runways
             </a>
             <Dot />
-            <a href="#" className="hover:text-yellow-400">
-              Runways
+            <a href="#designers" className="hover:text-yellow-400">
+              Designers
             </a>
             <Dot />
             <a href="#" className="hover:text-yellow-400">
@@ -34,8 +31,15 @@ export default function Introduction() {
               Quotes
             </a>
           </nav>
+
           <div className="flex gap-4">
-            <Github className="cursor-pointer hover:text-yellow-400" />
+            <a
+              href="https://github.com/brandonporcel/fashion-channel"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Github className="cursor-pointer hover:text-yellow-400" />
+            </a>
           </div>
         </div>
       </div>
@@ -58,17 +62,6 @@ export default function Introduction() {
             shows. A space to discover, contribute, and share the most exciting
             moments in fashion — all in one place.
           </p>
-        </div>
-      </div>
-
-      <div className="bg-pink-500 text-white py-8">
-        <div className="flex w-full items-center space-x-1 max-w-screen-lg mx-auto">
-          <Input
-            placeholder="Search a designer or runway..."
-            type="text"
-            className="placeholder:text-white"
-          ></Input>
-          <Button className="cursor-pointer">Search</Button>
         </div>
       </div>
     </section>
