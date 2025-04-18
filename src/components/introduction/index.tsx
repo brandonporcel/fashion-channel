@@ -1,6 +1,5 @@
-import { StylerIcon } from "@/assets/icons";
 import { Dot, Github } from "lucide-react";
-import React from "react";
+import { StylerIcon } from "@/assets/icons";
 
 export default function Introduction() {
   return (
@@ -8,12 +7,12 @@ export default function Introduction() {
       <div className="border-b border-white/30">
         <div className="max-w-screen-lg mx-auto flex items-center justify-between px-6 md:px-12 py-4">
           <nav className="flex gap-4 text-sm font-semibold">
-            <a href="#" className="hover:text-yellow-400">
-              Designers
+            <a href="#runways" className="hover:text-yellow-400">
+              Runways
             </a>
             <Dot />
-            <a href="#" className="hover:text-yellow-400">
-              Runways
+            <a href="#designers" className="hover:text-yellow-400">
+              Designers
             </a>
             <Dot />
             <a href="#" className="hover:text-yellow-400">
@@ -32,8 +31,15 @@ export default function Introduction() {
               Quotes
             </a>
           </nav>
+
           <div className="flex gap-4">
-            <Github className="cursor-pointer hover:text-yellow-400" />
+            <a
+              href="https://github.com/brandonporcel/fashion-channel"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Github className="cursor-pointer hover:text-yellow-400" />
+            </a>
           </div>
         </div>
       </div>
@@ -45,9 +51,9 @@ export default function Introduction() {
             aria-label="Styler Icon"
           />
 
-          <h1 className="text-3xl font-bold leading-tight hover:text-yellow-400 cursor-pointer">
+          <h2 className="text-3xl font-bold leading-tight hover:text-yellow-400 cursor-pointer">
             Backstage & full show
-          </h1>
+          </h2>
         </div>
 
         <div className="text-base leading-relaxed text-white max-w-3xl">
@@ -56,25 +62,6 @@ export default function Introduction() {
             shows. A space to discover, contribute, and share the most exciting
             moments in fashion — all in one place.
           </p>
-        </div>
-      </div>
-
-      <div className="bg-pink-500 text-white px-6 md:px-12 py-8">
-        <div className="max-w-screen-lg mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex">
-            <input
-              type="text"
-              placeholder="Search in the list..."
-              className="px-4 py-2 text-black rounded-l"
-            />
-            <button className="bg-yellow-400 px-4 py-2 rounded-r text-black font-bold">
-              Search
-            </button>
-          </div>
-
-          <button className="font-bold text-center">
-            I want to know a random runway
-          </button>
         </div>
       </div>
     </section>

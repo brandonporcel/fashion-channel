@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Outfit, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Footer from "@/components/footer";
+import { Toaster } from "@/components/ui/sonner";
 
 const outfitSans = Outfit({
   variable: "--font-outfit-sans",
@@ -57,11 +59,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body
-        className={`${outfitSans.variable} ${geistMono.variable} antialiased`}
+        className={`${outfitSans.variable} ${geistMono.variable} antialiased bg-[#F5F7F1]`}
       >
         {children}
+        <Footer />
+        <Toaster />
       </body>
     </html>
   );
