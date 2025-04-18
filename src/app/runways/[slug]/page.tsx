@@ -2,11 +2,11 @@ import RunwayCard from "@/components/runway-card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-interface Props {
+type Props = Promise<{
   params: {
     slug: string;
   };
-}
+}>;
 
 const runways = [
   {
@@ -16,8 +16,10 @@ const runways = [
   },
 ];
 
-async function RunwayDetail({ params }: Props) {
-  const { slug } = params;
+async function RunwayDetail(props: { params: Props }) {
+  const {
+    params: { slug },
+  } = await props.params;
 
   return (
     <>
