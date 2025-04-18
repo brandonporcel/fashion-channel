@@ -2,12 +2,9 @@ import RunwayCard from "@/components/runway-card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-interface Props {
-  params: {
-    slug: string;
-  };
-}
-
+type Props = {
+  params: Promise<{ slug: string }>;
+};
 const runways = [
   {
     id: 1,
