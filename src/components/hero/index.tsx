@@ -5,18 +5,13 @@ export default function Hero() {
     <div className="relative w-full h-screen overflow-hidden">
       <Image
         src={
-          "https://i.pinimg.com/originals/38/96/7d/38967db0a59694c460173e5c60595998.gif"
+          "https://i.pinimg.com/originals/4b/47/24/4b472411bea28fbaf6f85845e7870831.gif"
         }
-        alt="joan of arc alexander mcqueen hero"
+        alt="alexander mcqueen hero"
         layout="fill"
         objectFit="cover"
         priority
       />
-      <div className="absolute inset-0 bg-gradient-to-b to-black flex items-start justify-center pt-20">
-        <h1 className="tracking-tighter bg-clip-text inline-block text-transparent bg-gradient-to-r from-slate-800 to-slate-900 sm:text-9xl font-bold opacity-40 select-none">
-          Fashion Channel
-        </h1>
-      </div>
     </div>
   );
 }

@@ -1,3 +1,5 @@
+"use client";
+import { useState, ChangeEvent } from "react";
 import {
   Dialog,
   DialogContent,
@@ -11,7 +13,12 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 
 function CreateBrandDialog(props: CrateBrandDialogProps) {
-  const { brandName, brandDialogOpen, onConfirm, setBrandDialogOpen } = props;
+  const [name, setName] = useState("");
+  const { brandDialogOpen, onConfirm, setBrandDialogOpen } = props;
+
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+  };
 
   return (
     <Dialog open={brandDialogOpen} onOpenChange={setBrandDialogOpen}>
@@ -24,8 +31,8 @@ function CreateBrandDialog(props: CrateBrandDialogProps) {
             <Label htmlFor="new-brand">Brand Name</Label>
             <Input
               id="new-brand"
-              value={brandName}
-              onChange={(e) => console.log("onChange", e.target.value)}
+              value={name}
+              onChange={onChange}
               placeholder="Enter brand name"
             />
           </div>
@@ -38,7 +45,7 @@ function CreateBrandDialog(props: CrateBrandDialogProps) {
           >
             Cancel
           </Button>
-          <Button type="button" onClick={onConfirm}>
+          <Button type="button" onClick={(e) => onConfirm(name)}>
             Add Brand
           </Button>
         </DialogFooter>

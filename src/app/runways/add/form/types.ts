@@ -1,8 +1,7 @@
 export type CrateBrandDialogProps = {
-  brandName?: string | number | readonly string[] | undefined;
   brandDialogOpen: boolean;
   setBrandDialogOpen: (open: boolean) => void;
-  onConfirm: () => void;
+  onConfirm: (brandName: string) => void;
 };
 
 export type ConfirmDialogProps = {

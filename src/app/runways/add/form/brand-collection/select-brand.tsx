@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import {
   Select,
@@ -10,129 +10,91 @@ import {
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import CreateBrandDialog from "../dialogs/create-brand-dialog";
+import { createBrand, getBrands } from "@/actions/brand.action";
+import { Brand } from "@/types/brand.types";
 
-function SelectBrandCollection() {
+function SelectBrand() {
   const {
     control,
     formState: { errors },
   } = useFormContext();
   const [brandDialogOpen, setBrandDialogOpen] = useState(false);
+  const [brands, setBrands] = useState<Brand[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const currentYear = new Date().getFullYear();
-  const years = Array.from({ length: 40 }, (_, i) => currentYear - i);
+  useEffect(() => {
+    async function loadBrands() {
+      try {
+        setIsLoading(true);
+        const data = await getBrands();
+        setBrands(data);
+      } catch (error) {
+        console.error("Failed to load brands:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    loadBrands();
+  }, []);
 
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-        <div>
-          <Label htmlFor="brand">Brand</Label>
-          <Controller
-            name="brandId"
-            control={control}
-            render={({ field }) => (
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <SelectTrigger id="brand" className="w-full">
-                  <SelectValue placeholder="Select brand" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="martin-margiela">
-                    Martin Margiela
+      <div>
+        <Label htmlFor="brand">Brand</Label>
+        <Controller
+          name="brandId"
+          control={control}
+          render={({ field }) => (
+            <Select
+              onValueChange={field.onChange}
+              defaultValue={field.value}
+              disabled={isLoading}
+            >
+              <SelectTrigger id="brand" className="w-full">
+                <SelectValue
+                  placeholder={isLoading ? "Loading brands..." : "Select brand"}
+                />
+              </SelectTrigger>
+              <SelectContent>
+                {brands.map((brand) => (
+                  <SelectItem key={brand.id} value={brand.id}>
+                    {brand.name}
                   </SelectItem>
-                </SelectContent>
-              </Select>
-            )}
-          />
-          <div>
-            <p className="text-sm text-muted-foreground">
-              Don't see the brand?{" "}
-              <span
-                onClick={() => setBrandDialogOpen(true)}
-                title="Create new brand"
-                className="text-blue-400 underline italic cursor-pointer"
-              >
-                Add it here
-              </span>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+        />
+        <div>
+          <p className="text-sm text-muted-foreground">
+            Don't see the brand?{" "}
+            <span
+              onClick={() => setBrandDialogOpen(true)}
+              title="Create new brand"
+              className="text-blue-400 underline italic cursor-pointer"
+            >
+              Add it here
+            </span>
+          </p>
+          {errors.brandId && (
+            <p className="text-sm text-red-500">
+              {errors.brandId.message as string}
             </p>
-            {errors.brandId && (
-              <p className="text-sm text-red-500">
-                {errors.brandId.message as string}
-              </p>
-            )}
-          </div>
-        </div>
-
-        <div className="flex flex-col sm:flex-row justify-between gap-1">
-          <div className="w-full sm:w-6/12 md:w-full">
-            <Label htmlFor="collection">Collection</Label>
-            <Controller
-              control={control}
-              name="collectionId"
-              render={({ field }) => {
-                return (
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <SelectTrigger id="collection" className="w-full">
-                      <SelectValue placeholder="Select collection" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="spring-2023">Spring Summer</SelectItem>
-                      <SelectItem value="fall-2023">Fall Winter</SelectItem>
-                    </SelectContent>
-                  </Select>
-                );
-              }}
-            />
-            {errors.collectionId && (
-              <p className="text-sm text-red-500">
-                {errors.collectionId.message as string}
-              </p>
-            )}
-          </div>
-          <div className="w-full sm:w-1/2">
-            <Label htmlFor="date">Year</Label>
-            <Controller
-              control={control}
-              name="year"
-              render={({ field }) => {
-                return (
-                  <Select
-                    onValueChange={(value: string) => field.onChange(+value)}
-                    defaultValue={field.value}
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Pick year" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {years.map((year) => (
-                        <SelectItem key={year} value={year.toString()}>
-                          {year}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                );
-              }}
-            />
-            {errors.year && (
-              <p className="text-sm text-red-500">
-                {errors.year.message as string}
-              </p>
-            )}
-          </div>
+          )}
         </div>
       </div>
       <CreateBrandDialog
-        brandName={""}
         brandDialogOpen={brandDialogOpen}
         setBrandDialogOpen={setBrandDialogOpen}
-        onConfirm={() => {
-          console.log("Confirm");
+        onConfirm={async (brandName) => {
+          const newBrand = await createBrand(brandName);
+          setBrands([...brands, newBrand]);
+          setBrandDialogOpen(false);
         }}
       />
     </>
   );
 }
 
-export default SelectBrandCollection;
+export default SelectBrand;

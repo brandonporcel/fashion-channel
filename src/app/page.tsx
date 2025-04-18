@@ -10,8 +10,12 @@ export default function Home() {
       <Hero />
       <Introduction />
       <main className="mx-auto pt-10 py-4 sm:px-8 md:px-16 lg:px-60 xl:px-80 flex flex-col gap-4">
-        <TopRunways />
-        <TopDesigners />
+        <div id="runways">
+          <TopRunways />
+        </div>
+        <div id="designers">
+          <TopDesigners />
+        </div>
         <RandomQuote />
       </main>
     </>
