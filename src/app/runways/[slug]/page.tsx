@@ -17,7 +17,7 @@ const runways = [
 ];
 
 async function RunwayDetail({ params }: Props) {
-  const { slug } = await params;
+  const { slug } = params;
 
   return (
     <>
