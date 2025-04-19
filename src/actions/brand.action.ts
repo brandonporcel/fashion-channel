@@ -1,8 +1,8 @@
 "use server";
 
 export async function getBrands() {
-  return await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/brands").then(
-    (res) => res.json()
+  return await fetch(process.env.NEXT_PUBLIC_API_URL + "/brands").then((res) =>
+    res.json()
   );
 }
 

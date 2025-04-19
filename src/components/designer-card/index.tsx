@@ -1,8 +1,9 @@
+import { Designer } from "@/types/designer.types";
 import { Dot } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-function DesignerCard() {
+function DesignerCard({ designer }: { designer: Designer }) {
   return (
     <Link
       href="/designers/1"
@@ -12,14 +13,16 @@ function DesignerCard() {
     >
       <div className="w-42 h-42 relative">
         <Image
-          src="https://assets.vogue.com/photos/66f84ce3b7a248afbd81786b/master/w_1280,c_limit/_OBY0008.jpg"
+          src={designer.thumbnailUrl}
           alt="Designer"
           className="rounded-full object-cover"
           fill
         />
       </div>
 
-      <p className="mt-3 font-semibold text-white">Kiko Kostadinov</p>
+      <p className="mt-3 font-semibold text-white">
+        {designer.name} {designer.lastName}
+      </p>
       <p className="text-sm text-gray-400 flex items-center">
         Asics <Dot className="w-4 h-4" /> Novalis
       </p>

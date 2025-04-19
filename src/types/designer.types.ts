@@ -3,7 +3,8 @@ export interface Designer {
   name: string;
   lastName: string;
   slug: string;
-  description: string;
   popularity: number;
   validated: boolean;
+  thumbnailUrl: string;
+  description?: string;
 }

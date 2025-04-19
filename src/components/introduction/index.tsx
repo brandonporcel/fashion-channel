@@ -1,5 +1,6 @@
 import { Dot, Github } from "lucide-react";
 import { StylerIcon } from "@/assets/icons";
+import Link from "next/link";
 
 export default function Introduction() {
   return (
@@ -19,17 +20,14 @@ export default function Introduction() {
               Brands
             </a>
             <Dot />
-            <a href="#" className="hover:text-yellow-400">
+            <Link href="/critics" className="hover:text-yellow-400">
               Critics
-            </a>
+            </Link>
             <Dot />
-            <a href="#" className="hover:text-yellow-400">
+            <Link href="/unfound" className="hover:text-yellow-400">
               Unfound runywas
-            </a>
+            </Link>
             <Dot />
-            <a href="#" className="hover:text-yellow-400">
-              Quotes
-            </a>
           </nav>
 
           <div className="flex gap-4">

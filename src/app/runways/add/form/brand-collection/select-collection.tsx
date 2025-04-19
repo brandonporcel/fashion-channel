@@ -27,7 +27,7 @@ function SelectCollection() {
           name="collectionType"
           render={({ field }) => {
             return (
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <Select onValueChange={field.onChange} value={field.value}>
                 <SelectTrigger id="collection" className="w-full">
                   <SelectValue placeholder="Select collection" />
                 </SelectTrigger>
@@ -48,6 +48,7 @@ function SelectCollection() {
           </p>
         )}
       </div>
+
       <div className="w-full sm:w-1/2">
         <Label htmlFor="date">Year</Label>
         <Controller
@@ -57,7 +58,7 @@ function SelectCollection() {
             return (
               <Select
                 onValueChange={(value: string) => field.onChange(+value)}
-                defaultValue={field.value}
+                value={field.value?.toString() ?? ""}
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Pick year" />

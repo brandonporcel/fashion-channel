@@ -21,13 +21,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://fashion-channel.vercel.app/",
+    url: "https://fashion-channel-swart.vercel.app/",
     title: "Fashion Channel",
     description: "Exploring the world of fashion",
     siteName: "Fashion Channel",
     images: [
       {
-        url: "https://fashion-channel.vercel.app/og.png",
+        url: "https://fashion-channel-swart.vercel.app/og.jpg",
         width: 1200,
         height: 630,
       },
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     description: "Exploring the world of fashion",
     images: [
       {
-        url: "https://keep-code.vercel.app/og.png",
+        url: "https://fashion-channel-swart.vercel.app/og.jpg",
         width: 1200,
         height: 630,
       },
