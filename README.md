@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+![cover page project](public/og.jpg)
 
-## Getting Started
+# Fashion Channel
 
-First, run the development server:
+Manage your favorite fashion runways and designers. [https://fashion-channel-swart.vercel.app/](https://fashion-channel-swart.vercel.app/)
+
+> Backend API: [https://github.com/brandonporcel/fashion-api](https://github.com/brandonporcel/fashion-api)
+
+## Install
 
 ```bash
+git clone https://github.com/brandonporcel/fashion-channel.git
+cd keep-code
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## To-Do
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [ ] Web transitions
+- [ ] Manage authentication to save runways
+- [ ] Implement skeleton loading or suspense for items
+- [ ] Rich text editor react for runway description
+- [ ] Make view for admin to validate runways and brands (or just to others users to approve 🤔)
+- [ ] Youtube searcher in runway form instead of paste link
+- [ ] Implement gallery for clicking images
+- [ ] Handle tags for runways
+- [ ] Implement SWR
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Contributing
 
-To learn more about Next.js, take a look at the following resources:
+Contributions are always welcome! Feel free to submit issues or pull requests.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Feedback
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+I’d love to hear your thoughts! Contact me via [mail](brandon7.7porcel@gmail.com) or [linkedin](https://www.linkedin.com/in/brandonporcel/)
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+<!--
+https://shu-gallery.vercel.app/
+ -->

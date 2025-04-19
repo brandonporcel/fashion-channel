@@ -15,22 +15,40 @@ import { showErrorToast, showSuccessToast } from "@/utils/toast";
 import { createRunway } from "@/actions/runway.action";
 import { compressImage } from "@/lib/images.util";
 
-export default function RunwayUploadForm() {
+function RunwayUploadForm() {
   const methods = useForm<RunwayFormData>({
     resolver: zodResolver(runwaySchema),
+    defaultValues: {
+      brandId: "",
+      collectionType: "",
+      year: undefined,
+      youtubeLink: "",
+      designerId: "",
+      description: "",
+      images: [],
+    },
   });
 
   const { handleSubmit, formState } = methods;
   const [confirmDialogOpen, setConfirmDialogOpen] = useState(false);
   const [formData, setFormData] = useState<RunwayFormData | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [thumbnail, setThumbnail] = useState("");
+  const [images, setImages] = useState<File[]>([]);
 
   const handleCreateClick = handleSubmit((data) => {
     setFormData(data);
     setConfirmDialogOpen(true);
   });
 
+  const handleReset = () => {
+    methods.reset();
+    setThumbnail("");
+    setImages([]);
+  };
+
   const parseFormValues = async (formData: RunwayFormData) => {
-    console.log("form values", formData);
     const formDataObj = new FormData();
 
     Object.entries(formData).forEach(([key, value]) => {
@@ -52,21 +70,23 @@ export default function RunwayUploadForm() {
   const handleConfirm = async () => {
     if (!formData) return;
 
+    setIsLoading(true);
     try {
       const formObject = await parseFormValues(formData);
-      console.log("formObject", formObject);
       const result = await createRunway(formObject);
 
       if (result.error) {
-        console.log("result", result);
         throw new Error(result.error);
       }
 
       setConfirmDialogOpen(false);
       showSuccessToast("Runway created successfully");
+      handleReset();
     } catch (error) {
       showErrorToast("Error submitting data");
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -75,7 +95,7 @@ export default function RunwayUploadForm() {
       <FormProvider {...methods}>
         <form onSubmit={(e) => e.preventDefault()}>
           <SelectBrandCollection />
-          <AddYoutubeLink />
+          <AddYoutubeLink setThumbnail={setThumbnail} thumbnail={thumbnail} />
 
           <div className="mb-4">
             <SelectDesigner />
@@ -92,7 +112,7 @@ export default function RunwayUploadForm() {
           </div>
 
           <div className="mb-6">
-            <ImageUploadSection />
+            <ImageUploadSection images={images} setImages={setImages} />
           </div>
 
           <Button
@@ -110,7 +130,10 @@ export default function RunwayUploadForm() {
         confirmDialogOpen={confirmDialogOpen}
         setConfirmDialogOpen={setConfirmDialogOpen}
         onConfirm={handleConfirm}
+        isLoading={isLoading}
       />
     </>
   );
 }
+
+export default RunwayUploadForm;

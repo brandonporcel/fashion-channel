@@ -8,6 +8,7 @@ export type ConfirmDialogProps = {
   confirmDialogOpen: boolean;
   setConfirmDialogOpen: (open: boolean) => void;
   onConfirm: () => void;
+  isLoading: boolean;
 };
 
 export type ImageUploadProps = {

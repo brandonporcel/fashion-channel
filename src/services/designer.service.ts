@@ -1,14 +1,14 @@
-import { Runway } from "@/types/runway.types";
+import { Designer } from "@/types/designer.types";
 
-type FetchRunwaysParams = {
+type FetchDesignersParams = {
   limit?: number;
   sort?: string;
 };
 
-export async function fetchRunways(
-  params?: FetchRunwaysParams
-): Promise<Runway[]> {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/runways`;
+export async function fetchDesigners(
+  params?: FetchDesignersParams
+): Promise<Designer[]> {
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/designers`;
 
   const queryObject: Record<string, string> = {};
   if (params?.limit !== undefined) queryObject.limit = params.limit.toString();
@@ -25,9 +25,4 @@ export async function fetchRunways(
   }
 
   return res.json();
-}
-
-export async function getRunway(term: string): Promise<Runway> {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/runways/${term}`;
-  return await fetch(url, { cache: "no-store" }).then((res) => res.json());
 }

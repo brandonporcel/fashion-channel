@@ -1,5 +1,8 @@
 import TopRunways from "@/components/top-runways";
 import RunwayForm from "./form";
+import Header from "@/components/header";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 function RunwayData() {
   return (
@@ -7,26 +10,15 @@ function RunwayData() {
       <main className="mx-auto pt-10 py-4 sm:px-8 md:px-16 lg:px-60 xl:px-80 flex flex-col">
         <Header title="Add new Runway" subtitle="Complete the form below" />
 
-        <div className="w-9/12 mx-auto p-6 mb-12">
+        <div className="w-9/12 mx-auto p-6">
           <RunwayForm />
         </div>
 
-        <section className="p-4 sm:px-0">
-          <TopRunways />
-        </section>
+        <Button asChild variant={"secondary"} className="w-9/12 mx-auto">
+          <Link href={"/runways"}>See all runways</Link>
+        </Button>
       </main>
     </>
-  );
-}
-
-function Header({ title, subtitle }: { title: string; subtitle: string }) {
-  return (
-    <div className="text-center space-y-2 mb-6">
-      <h1 className="font-bold font-serif text-6xl sm:text-5xl">{title}</h1>
-      <h2 className="text-xl font-serif font-light uppercase tracking-wide">
-        {subtitle}
-      </h2>
-    </div>
   );
 }
 

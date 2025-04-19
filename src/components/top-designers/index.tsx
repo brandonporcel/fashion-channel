@@ -1,36 +1,10 @@
-import React from "react";
 import Link from "next/link";
 import DesignerCard from "../designer-card";
+import { fetchDesigners } from "@/services/designer.service";
 
-const designers = [
-  {
-    id: 1,
-    image:
-      "https://assets.vogue.com/photos/66f84ce3b7a248afbd81786b/master/w_1280,c_limit/_OBY0008.jpg",
-  },
-  {
-    id: 2,
-    image:
-      "https://assets.vogue.com/photos/66f84ce3b7a248afbd81786b/master/w_1280,c_limit/_OBY0008.jpg",
-  },
-  {
-    id: 3,
-    image:
-      "https://assets.vogue.com/photos/66f84ce3b7a248afbd81786b/master/w_1280,c_limit/_OBY0008.jpg",
-  },
-  {
-    id: 4,
-    image:
-      "https://assets.vogue.com/photos/66f84ce3b7a248afbd81786b/master/w_1280,c_limit/_OBY0008.jpg",
-  },
-  {
-    id: 5,
-    image:
-      "https://assets.vogue.com/photos/66f84ce3b7a248afbd81786b/master/w_1280,c_limit/_OBY0008.jpg",
-  },
-];
+async function TopDesigners() {
+  const designers = await fetchDesigners({ limit: 5 });
 
-function TopDesigners() {
   return (
     <section>
       <div className="flex justify-between items-center">
@@ -41,11 +15,10 @@ function TopDesigners() {
       </div>
       <div className="flex overflow-x-auto space-x-4 pb-2 scrollbar-hide">
         {designers.map((designer) => (
-          <DesignerCard key={designer.id} />
+          <DesignerCard key={designer.id} designer={designer} />
         ))}
       </div>
     </section>
   );
 }
-
 export default TopDesigners;

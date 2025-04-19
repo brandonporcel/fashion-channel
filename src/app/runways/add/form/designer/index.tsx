@@ -47,7 +47,7 @@ function SelectDesigner() {
             return (
               <Select
                 onValueChange={field.onChange}
-                defaultValue={field.value}
+                value={field.value}
                 disabled={isLoading}
               >
                 <SelectTrigger id="designer" className="w-full">

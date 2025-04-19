@@ -1,33 +1,24 @@
 "use client";
 import { Clipboard } from "lucide-react";
 import { Controller, useFormContext } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import getYouTubeVideoId from "@/utils/yt";
 
-function AddYoutubeLink() {
+function AddYoutubeLink({
+  setThumbnail,
+  thumbnail,
+}: {
+  setThumbnail: React.Dispatch<React.SetStateAction<string>>;
+  thumbnail: string;
+}) {
   const {
     control,
     formState: { errors },
   } = useFormContext();
-  const [thumbnail, setThumbnail] = useState("");
-
-  const getYouTubeVideoId = (url: string): string | null => {
-    try {
-      const parsedUrl = new URL(url);
-      const hostname = parsedUrl.hostname;
-
-      if (hostname.includes("youtube.com"))
-        return parsedUrl.searchParams.get("v");
-      if (hostname === "youtu.be") return parsedUrl.pathname.slice(1);
-
-      return null;
-    } catch (error) {
-      return null;
-    }
-  };
 
   const handlePaste = async (onChange: (value: string) => void) => {
     try {
