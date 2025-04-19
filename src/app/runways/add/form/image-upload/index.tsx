@@ -10,12 +10,17 @@ import { showInfoToast } from "@/utils/toast";
 
 const LIMIT = 8;
 
-export default function ImageUploadSection() {
+function ImageUploadSection({
+  images,
+  setImages,
+}: {
+  images: File[];
+  setImages: React.Dispatch<React.SetStateAction<File[]>>;
+}) {
   const {
     setValue,
     formState: { errors },
   } = useFormContext();
-  const [images, setImages] = useState<File[]>([]);
   const [dragActive, setDragActive] = useState(false);
 
   const handleDrag = (e: React.DragEvent) => {
@@ -88,7 +93,6 @@ export default function ImageUploadSection() {
   };
 
   const handleViewMore = () => {
-    // This would open a gallery modal in the future
     console.log("View more images clicked");
   };
 
@@ -139,3 +143,5 @@ export default function ImageUploadSection() {
     </div>
   );
 }
+
+export default ImageUploadSection;

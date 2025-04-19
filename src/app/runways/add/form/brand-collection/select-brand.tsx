@@ -48,7 +48,7 @@ function SelectBrand() {
           render={({ field }) => (
             <Select
               onValueChange={field.onChange}
-              defaultValue={field.value}
+              value={field.value}
               disabled={isLoading}
             >
               <SelectTrigger id="brand" className="w-full">

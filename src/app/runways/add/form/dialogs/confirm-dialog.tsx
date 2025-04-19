@@ -7,9 +7,11 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { ConfirmDialogProps } from "../types";
+import { Loader2 } from "lucide-react";
 
 function ConfirmDialog(props: ConfirmDialogProps) {
-  const { confirmDialogOpen, setConfirmDialogOpen, onConfirm } = props;
+  const { confirmDialogOpen, setConfirmDialogOpen, onConfirm, isLoading } =
+    props;
   return (
     <Dialog open={confirmDialogOpen} onOpenChange={setConfirmDialogOpen}>
       <DialogContent>
@@ -22,11 +24,25 @@ function ConfirmDialog(props: ConfirmDialogProps) {
             type="button"
             variant="outline"
             onClick={() => setConfirmDialogOpen(false)}
+            disabled={isLoading}
+            className="cursor-pointer"
           >
             Cancel
           </Button>
-          <Button type="button" onClick={onConfirm}>
-            Confirm
+          <Button
+            type="button"
+            onClick={onConfirm}
+            className="cursor-pointer"
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <span className="flex items-center gap-2">
+                <Loader2 className="animate-spin h-4 w-4" />
+                Uploading...
+              </span>
+            ) : (
+              "Confirm"
+            )}
           </Button>
         </DialogFooter>
       </DialogContent>

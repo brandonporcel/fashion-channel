@@ -1,11 +1,13 @@
 "use client";
-import Link from "next/link";
-import RunwayCard from "../runway-card";
-import { fetchRunways } from "@/services/runway.service";
+import React, { useEffect, useState } from "react";
+import Header from "@/components/header";
 import { Runway } from "@/types/runway.types";
-import { useEffect, useState } from "react";
+import { fetchRunways } from "@/services/runway.service";
+import RunwayCard from "@/components/runway-card";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
-function TopRunways() {
+function RunwaysList() {
   const [runways, setRunways] = useState<Runway[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -15,7 +17,8 @@ function TopRunways() {
       try {
         setLoading(true);
         setError(null);
-        const data = await fetchRunways({ limit: 5 });
+
+        const data = await fetchRunways();
         setRunways(data);
       } catch (err: any) {
         setError("Hubo un error al obtener los desfiles de moda");
@@ -37,24 +40,28 @@ function TopRunways() {
   }
 
   return (
-    <section>
-      <div className="flex justify-between items-center">
-        <h2 className="text-xl font-semibold mb-4">Top Runways</h2>
-        <Link href={"runways"} className="hover:underline">
-          See all
-        </Link>
-      </div>
+    <main className="mx-auto pt-10 py-4 sm:px-8 md:px-16 lg:px-60 xl:px-80 flex flex-col">
+      <Header title="All Runways" subtitle="" />
+
       <div className="flex overflow-x-auto space-x-4 pb-2 scrollbar-hide">
         {runways.map((runway) => (
           <RunwayCard key={runway.id} runway={runway} />
         ))}
-
         {runways.length === 0 && (
           <p className="text-gray-500">No runways found</p>
         )}
       </div>
-    </section>
+
+      <footer className="w-full pt-10 py-4">
+        <Button asChild variant={"outline"} className="w-full">
+          <Link href={"runways/add"}>Add new Runway</Link>
+        </Button>
+        <Button asChild className="w-full mt-2">
+          <Link href={"/"}>Go home</Link>
+        </Button>
+      </footer>
+    </main>
   );
 }
 
-export default TopRunways;
+export default RunwaysList;
