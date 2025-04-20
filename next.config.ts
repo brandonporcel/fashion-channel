@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
       { hostname: "assets.vogue.com" },
       { hostname: "img.youtube.com" },
       { hostname: "res.cloudinary.com" },
+      { hostname: "**" },
     ],
   },
 };

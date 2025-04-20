@@ -1,7 +1,7 @@
-import { Designer } from "@/types/designer.types";
 import { Dot } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Designer } from "@/types/designer.types";
 
 function DesignerCard({ designer }: { designer: Designer }) {
   return (
@@ -13,7 +13,10 @@ function DesignerCard({ designer }: { designer: Designer }) {
     >
       <div className="w-42 h-42 relative">
         <Image
-          src={designer.thumbnailUrl}
+          src={
+            designer.thumbnailUrl ||
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI9CFTsFFrtTSDaONy7hKjBI6k_KR-MmPxkg&s"
+          }
           alt="Designer"
           className="rounded-full object-cover"
           fill
