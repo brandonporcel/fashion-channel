@@ -32,18 +32,19 @@ function RunwaysList() {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>An error ocurred</div>;
+    return (
+      <main className="mx-auto pt-10 py-4 sm:px-8 md:px-16 lg:px-60 xl:px-80 flex flex-col">
+        <Header title="All Runways" subtitle="" />
+        <p>Loading...</p>
+      </main>
+    );
   }
 
   return (
     <main className="mx-auto pt-10 py-4 sm:px-8 md:px-16 lg:px-60 xl:px-80 flex flex-col">
       <Header title="All Runways" subtitle="" />
 
-      <div className="flex overflow-x-auto space-x-4 pb-2 scrollbar-hide">
+      <div className="flex flex-wrap justify-center gap-4">
         {runways.map((runway) => (
           <RunwayCard key={runway.id} runway={runway} />
         ))}
