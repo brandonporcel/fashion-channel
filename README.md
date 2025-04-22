@@ -26,6 +26,7 @@ npm run dev
 - [ ] Implement gallery for clicking images
 - [ ] Handle tags for runways
 - [ ] Implement SWR
+- [ ] Static props
 
 ---
 
