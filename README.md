@@ -26,7 +26,7 @@ npm run dev
 - [ ] Implement gallery for clicking images
 - [ ] Handle tags for runways
 - [ ] Implement SWR
-- [ ] add streams to show the trajectory of creative directors
+- [ ] add streams to show the trajectory of creative directors - [chatflow](https://v0.app/community/react-chat-flow-editor-goebgRrV043)
 
 ---
 
